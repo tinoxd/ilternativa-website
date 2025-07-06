@@ -2,8 +2,8 @@ services:
   - type: web
     name: ilternativa-website
     env: node
-    buildCommand: "npm install && npm run client-install && npm run client-build"
-    startCommand: "npm start"
+    buildCommand: "chmod +x build.sh && ./build.sh"
+    startCommand: "node server.js"
     envVars:
       - key: NODE_ENV
         value: production
