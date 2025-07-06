@@ -1,0 +1,4 @@
+[dotenv@17.0.1] injecting env (6) from .env – [tip] encrypt with dotenvx: https://dotenvx.com
+Server is running on port: 5000
+MongoDB database connection established successfully
+✅ WhatsApp клиент готов к работе!

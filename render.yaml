@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: ilternativa-website
+    env: node
+    buildCommand: "npm install && npm run client-install && npm run client-build"
+    startCommand: "npm start"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: YOUTUBE_API_KEY
+        sync: false
+      - key: YOUTUBE_CHANNEL_ID
+        sync: false
+      - key: ADMIN_WHATSAPP_NUMBER
+        sync: false
