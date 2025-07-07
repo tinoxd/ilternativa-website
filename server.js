@@ -29,17 +29,24 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const uri = process.env.MONGODB_URI;
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).catch(err => {
-  console.error('MongoDB connection error:', err);
-  process.exit(1);
-});
+mongoose.connect(uri)
+  .then(() => {
+    console.log("MongoDB database connection established successfully");
+  })
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    console.error('Connection string:', uri ? uri.substring(0, 30) + '...' : 'undefined');
+    process.exit(1);
+  });
+
 const connection = mongoose.connection;
-connection.once('open', () => {
-  console.log("MongoDB database connection established successfully");
-})
+connection.on('error', err => {
+  console.error('MongoDB connection error:', err);
+});
+
+connection.on('disconnected', () => {
+  console.log('MongoDB disconnected');
+});
 
 const authRouter = require('./routes/auth');
 const eventsRouter = require('./routes/events');
